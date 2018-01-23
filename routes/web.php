@@ -38,3 +38,7 @@ Route::prefix('admin')->group(function() {
   });
 
 Route::resource('sales','SalesController');
+
+Route::resource('cart_items','CartController');
+
+Route::get('/checkout','CartController@show');
