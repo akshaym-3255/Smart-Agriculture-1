@@ -1,5 +1,5 @@
 @extends('layouts.index')
-<!--TODO: whole thing-->
+<!--TODO: Purchase-->
 @section('content')
 <div class="container">
     <div class="well">

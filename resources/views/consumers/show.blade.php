@@ -1,5 +1,5 @@
 @extends('layouts.index')
-
+<!--TODO: resolve illegal string offset 'name' error-->
 @section('content')
 <div class="container">
     <a href="/sales">Go Back</a>
