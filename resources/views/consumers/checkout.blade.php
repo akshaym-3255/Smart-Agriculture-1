@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="well">
-        <table class="table">
         @if(count($cartitems)>0)
+        <table class="table">
         <tr>
         <th>Name</th>
         <th>Price</th>

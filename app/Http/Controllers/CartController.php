@@ -14,11 +14,10 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $this->validate($request,['name'=>'required','price'=>'required','quantity'=>'required']);
+        $this->validate($request,['quantity'=>'required']);
         $CartItem = new CartItem;
         $CartItem->id = $request->input('id');
         $CartItem->user_id = auth()->id();
-        $CartItem->name = $request->input('name');
         $CartItem->quantity = $request->input('quantity');
         $CartItem->save();
         return 123;

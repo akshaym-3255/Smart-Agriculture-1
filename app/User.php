@@ -29,4 +29,7 @@ class User extends Authenticatable
     public function sales(){
         return $this->hasMany('App\Sale');
     }
+    public function cart_items() {
+        return $this->hasMany('App\CartItem','user_id','id');
+    }
 }
