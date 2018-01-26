@@ -27,6 +27,9 @@
         <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
             @include('inc.navbar')
         </header>
+        <div class="container">
+        @include('inc.messages')
+        </div>
         @yield('content')
     </body>
 </html>

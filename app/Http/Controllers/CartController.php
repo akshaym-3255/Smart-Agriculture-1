@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CartItem;
+use App\Sale;
+use App\User;
 class CartController extends Controller
 {
     //Add a new item to the cart
@@ -20,7 +22,7 @@ class CartController extends Controller
         $CartItem->user_id = auth()->id();
         $CartItem->quantity = $request->input('quantity');
         $CartItem->save();
-        return 123;
+        return back()->with('success',$CartItem->quantity.' items added to cart');
     }
     //to update the cart contents, ie, add to or delete from the quantity of a cartitem
     public function update($id,$add) {
@@ -59,7 +61,7 @@ class CartController extends Controller
         $user_id = auth()->user()->id;
         $cartitems = CartItem::where('user_id', $user_id)->get();
         foreach($cartitems as $cartitem) {
-            $total+=($cartitem->price)*($cartitem->quantity);
+            $total+=($cartitem->sale->price)*($cartitem->quantity);
             $totalitems++;
         }
         return view('consumers.checkout')->with('cartitems',$cartitems)

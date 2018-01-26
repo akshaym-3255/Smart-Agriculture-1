@@ -25,4 +25,7 @@ class Sale extends Model
     public function unit_for_quantity() {
         return $this->hasOne('App\Qty','id','perquan');
     }
+    public function cartitem() {
+        return $this->hasMany('App\CartItem','id','id');
+    }
 }

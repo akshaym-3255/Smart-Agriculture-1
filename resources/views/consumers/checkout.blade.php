@@ -12,8 +12,8 @@
         </tr>
         @foreach($cartitems as $cartitem)
         <tr>
-        <td>{{$cartitem->name}}</td>
-        <td>{{$cartitem->price}}</td>
+        <td>{{$cartitem->sale->name}}</td>
+        <td>{{$cartitem->sale->price}}</td>
         <td>{{$cartitem->quantity}}</td>
         </tr>
         @endforeach

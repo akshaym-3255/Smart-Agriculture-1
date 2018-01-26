@@ -19,7 +19,7 @@
                 </div>
             </div>
             {{Form::text('quantity','',['class'=>'form-control','placeholder'=>'Type here...'])}}
-            {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+            {{Form::submit('Add to Cart',['class'=>'btn btn-primary'])}}
         {!!Form::close()!!}
         </div>
 </div>
