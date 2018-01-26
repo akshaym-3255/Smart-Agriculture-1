@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Profile;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -31,5 +31,8 @@ class User extends Authenticatable
     }
     public function cart_items() {
         return $this->hasMany('App\CartItem','user_id','id');
+    }
+    public function profile() {
+        return $this->hasOne('App\Profile');
     }
 }

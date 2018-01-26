@@ -6,7 +6,7 @@
     {!! Form::open(['action'=>'CartController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
     <h1>{{$sale->name}}</h1>
     {{Form::hidden('id',$sale->id)}}
-    <p>Producer: {{$sale->user->name}}</p>
+    <p>Producer: <a href="/profile/{{$sale->user->id}}">{{$sale->user->name}}</a></p>
         <div class="container">
             <div class="well well-lg">
                 <div class="row">

@@ -15,6 +15,9 @@
     return view('index');
 });*/
 
+use Illuminate\Support\Facades\Input;
+use App\Sale;
+
 Route::get('/',function() {
     return view('home');
 
@@ -40,5 +43,14 @@ Route::prefix('admin')->group(function() {
 Route::resource('sales','SalesController');
 
 Route::resource('cart_items','CartController');
+
+Route::get('profile/{id}','ProfileController@show');
+
+Route::any('/search',function() {
+    $q = Input::get('q');
+    $sales = Sale::where('name','LIKE','%'.$q.'%')->get();
+    return view('consumers.index')->with('sales',$sales);
+});
+
 
 Route::get('/checkout','CartController@show');

@@ -22,6 +22,13 @@
             <ul class="nav navbar-nav">
                 @if(Auth::user()->type == 1)
                 <li><a href="/sales">Buy Goods</a></li>
+                <form action="/search" method="POST" role="search" class="navbar-form navbar-left">
+                    {{csrf_field()}}
+                <div class="form-group">
+                <input type="text" class="form-control" name="q" placeholder="Search here">                
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+                </form>
                 @elseif(Auth::user()->type == 2)
                 <li><a href="/sell">Sell Goods</a></li>
                 @endif

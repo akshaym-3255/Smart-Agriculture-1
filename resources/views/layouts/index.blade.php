@@ -14,11 +14,11 @@
         <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
-            .btn-default{
+            /*.btn-default{
                 width:200px;
                 height:200px;
             }
-            /*body {
+            body {
                 background-image: url('/terrace.jpg');
             }*/
         </style>
