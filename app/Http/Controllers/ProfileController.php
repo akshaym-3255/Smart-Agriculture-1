@@ -10,6 +10,6 @@ class ProfileController extends Controller
 {
     public function show($id) {
         $user = User::find($id);
-        return view('farmer.profile')->with('user',$user);
+        return view('farmer.profile')->with('user',$user)->with('sales',$user->sales);
     }
 }

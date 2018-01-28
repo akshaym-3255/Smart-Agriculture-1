@@ -46,11 +46,14 @@ Route::resource('cart_items','CartController');
 
 Route::get('profile/{id}','ProfileController@show');
 
+Route::get('delitemfromcart','CartController@destory');
+
 Route::any('/search',function() {
     $q = Input::get('q');
     $sales = Sale::where('name','LIKE','%'.$q.'%')->get();
     return view('consumers.index')->with('sales',$sales);
 });
 
+Route::resource('review','ReviewController');
 
 Route::get('/checkout','CartController@show');

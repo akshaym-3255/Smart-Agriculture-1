@@ -55,10 +55,14 @@ class CartController extends Controller
         //return some view
     }
 
-    public function delete($id) {
-        $CartItem = CartItem::find($id);
-        $CartItem->delete();
-        //return some view
+    public function destroy($id) {
+        $CartItems = CartItem::where('user_id','=',auth()->id())->get();
+        foreach($CartItems as $CartItem) {
+            if($CartItem->id == $id) {
+                $CartItem->delete();
+                return back()->with('success','x items deleted');
+            }
+        }
     }
 
     public function total($user_id) {

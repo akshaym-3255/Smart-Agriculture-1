@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Sale;
+use App\Review;
 class SalesController extends Controller
 {
     /**
@@ -59,7 +60,9 @@ class SalesController extends Controller
     public function show($id)
     {
         $sale = Sale::find($id);
-        return view('consumers.show')->with('sale',$sale);
+        $reviews = Review::where('id','=',$id)->get();
+        return view('consumers.show')->with('sale',$sale)
+                                    ->with('reviews',$reviews);
     }
 
     /**

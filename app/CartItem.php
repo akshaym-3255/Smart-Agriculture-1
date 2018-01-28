@@ -14,7 +14,7 @@ class CartItem extends Model
    // public $id = 'id';
     public $timestamps = true;
     public function user() {
-        return $this->belongsTo('App\User','id','user_id');
+        return $this->belongsTo('App\User');        //NOTE: REMOVED RELATIONS, PLEASE ADD BACK IF NECESSARY
     }
     public function sale() {
         return $this->belongsTo('App\Sale','id','id');

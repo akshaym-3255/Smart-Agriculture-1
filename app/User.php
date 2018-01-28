@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Profile;
+use App\Review;
+use App\Sale;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -30,9 +32,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Sale');
     }
     public function cart_items() {
-        return $this->hasMany('App\CartItem','user_id','id');
+        return $this->hasMany('App\CartItem');  //NOTE: REMOVED RELATIONS, PLEASE ADD BACK IF NECESSARY
     }
     public function profile() {
         return $this->hasOne('App\Profile');
+    }
+    public function review() {
+        return $this->hasMany('App\Review');
     }
 }
