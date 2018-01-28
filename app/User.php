@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Sale');
     }
     public function cart_items() {
-        return $this->hasMany('App\CartItem');  //NOTE: REMOVED RELATIONS, PLEASE ADD BACK IF NECESSARY
+        return $this->hasMany('App\CartItem','user_id','user_id');  //NOTE: REMOVED RELATIONS, PLEASE ADD BACK IF NECESSARY
     }
     public function profile() {
         return $this->hasOne('App\Profile');

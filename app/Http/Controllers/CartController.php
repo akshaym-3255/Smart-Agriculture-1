@@ -19,33 +19,22 @@ class CartController extends Controller
         //TODO: Fix SQL error
         //TODO: Fix updating issue
         $this->validate($request,['quantity'=>'required']);
-        $CartItems = CartItem::where([['user_id','=',auth()->id()],
-                                    ['id','=',$request->input('id')]])
-                                    ->get();
-        if($CartItems === null) {
-            $CartItem = new CartItem;
-            $CartItem->id = $request->input('id');
-            $CartItem->user_id = auth()->id();
-            $CartItem->quantity = $request->input('quantity');
-            $CartItem->save();
-            return back()->with('success',$request->quantity.' items added to cart');
-            /*$CartItem->quantity+=$request->input('quantity');
-            $CartItem->save();
-            return back()->with('success',$request->input('quantity').' items added to cart');*/
-        }
-        else {
+        $CartItems = CartItem::where('user_id',auth()->id())
+                            ->where('id',$request->input('id'))
+                            ->get();
+        if(!$CartItems->isEmpty()) {
             foreach($CartItems as $CartItem) {
-                $CartItem->quantity+=$request->input('quantity');
-                $CartItem->save();
-                return back()->with('success',$request->input('quantity').' items added to cart'); 
+                    $CartItem->quantity+=$request->input('quantity');
+                    $CartItem->save();
             }
+            return back()->with('success','x'); 
         }
-       /* $CartItem = new CartItem;
+        $CartItem = new CartItem;
         $CartItem->id = $request->input('id');
         $CartItem->user_id = auth()->id();
         $CartItem->quantity = $request->input('quantity');
         $CartItem->save();
-        return back()->with('success',$request->quantity.' items added to cart');*/
+        return back()->with('success','y');
     }
     //to update the cart contents, ie, add to or delete from the quantity of a cartitem
     public function update($id,$add) {
