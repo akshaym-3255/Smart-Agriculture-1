@@ -54,6 +54,10 @@ Route::any('/search',function() {
     return view('consumers.index')->with('sales',$sales);
 });
 
+Route::get('/edit/{id}','SalesController@edit');
+
+Route::get('/delete/{id}','SalesController@destroy');
+
 Route::resource('review','ReviewController');
 
 Route::get('/checkout','CartController@show');

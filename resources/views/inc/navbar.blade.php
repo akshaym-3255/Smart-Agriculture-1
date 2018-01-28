@@ -62,6 +62,9 @@
                                     {{ csrf_field() }}
                                 </form>
                             </li>
+                            @if(Auth::user()->type == 2)
+                            <li><a href="/profile/{{auth()->id()}}">{{Auth::user()->name}}</a></li>
+                            @endif
                         </ul>
                     </li>
                 @endguest

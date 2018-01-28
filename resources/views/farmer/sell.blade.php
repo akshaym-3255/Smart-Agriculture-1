@@ -10,7 +10,7 @@
         {{Form::text('name','',['class'=>'form-control','placeholder'=>'Name'])}}
     </div>
     <div class = "form-group">
-        {{Form::label('quatity','Quantity')}}
+        {{Form::label('quantity','Quantity')}}
         {{Form::text('quantity','',['class'=>'form-control','placeholder'=>'Quantity'])}}{{Form::select('perquan',['0'=>'Kilogram','1'=>'Gram','2'=>'Litre'],['class'=>'form-control','placeholder'=>'Unit'])}}
     </div>
     <div class = "form-group">

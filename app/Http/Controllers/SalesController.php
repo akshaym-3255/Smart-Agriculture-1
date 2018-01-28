@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Sale;
 use App\Review;
+use App\User;
 class SalesController extends Controller
 {
     /**
@@ -48,7 +49,7 @@ class SalesController extends Controller
         $sale->perprice = $request->input('perprice');
         $sale->user_id = auth()->id();
         $sale->save();
-        return 123;
+        return view('/profile/{{auth()->id()}}')->with('success','Item(s) posted successfully');
     }
 
     /**
@@ -73,7 +74,11 @@ class SalesController extends Controller
      */
     public function edit($id)
     {
-        
+        $sale = Sale::find($id);
+        if(auth()->id() !== $sale->user_id) {
+            return back()->with('error','Your trespassing has been reported. Expect a visit from the Trenchcoat Mafia soon.');
+        }
+        return view('farmer.edit')->with('sale',$sale);
     }
 
     /**
@@ -83,9 +88,22 @@ class SalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        
+        $this->validate($request,['name'=>'required','price'=>'required']);
+        $sale = Sale::find($id);
+        $sale->name = $request->input('name');
+        $sale->information = $request->input('information');
+        $sale->price = $request->input('price');
+        $sale->discount = $request->input('discount');
+        $sale->quantity = $request->input('quantity');
+        $sale->perquan = $request->input('perquan');
+        $sale->perprice = $request->input('perprice');
+        $sale->user_id = auth()->id();
+        $sale->save();
+        $user = User::find(auth()->id());
+        $sales = Sale::where('user_id',auth()->id())->get();
+        return view('farmer.profile')->with('success','Item(s) updated successfully')->with('user',$user)->with('sales',$sales);
     }
 
     /**
@@ -96,7 +114,12 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        
+        $sale = Sale::find($id);
+        if(auth()->id() !== $sale->user_id) {
+            return back()->with('error','Your trespassing has been reported. Expect a visit from the Trenchcoat Mafia soon.');
+        }
+        $sale->delete();
+        return back()->with('success','Item(s) deleted successfully');
     }
 }
 
