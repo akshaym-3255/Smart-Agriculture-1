@@ -42,6 +42,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}" id="farmer-address">
+                            <label for="address" class="col-md-4 control-label">Address</label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="address"></textarea>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -91,4 +105,20 @@
         </div>
     </div>
 </div>
+<script type="text/javascript"
+    src="jquery-ui-1.10.0/tests/jquery-1.9.0.js"></script>
+<script src="jquery-ui-1.10.0/ui/jquery-ui.js"></script>
+<script> 
+    $(document).ready(function() {
+        $('#sel1').change(function(){
+            var selection = $('#sel1').val();
+            if(selection==1) {
+                $('#farmer-address').hide();
+            }
+            else if (selection==2) {
+                $('#farmer-address').show();
+            }
+        }).change();
+    });
+</script>
 @endsection
