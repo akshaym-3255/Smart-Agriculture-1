@@ -17,7 +17,7 @@
 
 use Illuminate\Support\Facades\Input;
 use App\Sale;
-
+use App\User;
 Route::get('/',function() {
     return view('home');
 
@@ -61,3 +61,8 @@ Route::get('/delete/{id}','SalesController@destroy');
 Route::resource('review','ReviewController');
 
 Route::get('/checkout','CartController@show');
+
+Route::get('/government',function() {
+    $farmers = User::where('type',2)->get();
+    return view('government.farm_history')->with('farmers',$farmers);
+});
