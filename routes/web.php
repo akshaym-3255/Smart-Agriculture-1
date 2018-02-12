@@ -16,6 +16,7 @@
 });*/
 
 use Illuminate\Support\Facades\Input;
+use App\Http\Middleware\Admin;
 use App\Sale;
 use App\User;
 Route::get('/',function() {
@@ -66,3 +67,7 @@ Route::get('/government',function() {
     $farmers = User::where('type',2)->get();
     return view('government.farm_history')->with('farmers',$farmers);
 });
+
+Route::get('admin/profile', ['middleware' => 'admin', function () {  
+    return 123;
+}]);

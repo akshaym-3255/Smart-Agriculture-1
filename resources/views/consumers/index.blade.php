@@ -4,7 +4,6 @@
 <div id="con" class="container">
     <h1>On Sale</h1>
     @if(count($sales) > 0)
-    {{$count = 0}}
         @foreach($sales as $sale)
         @if(($count++)%3==0)
         <div class="container">
@@ -12,6 +11,9 @@
                     @endif
                     <div class="col-md-4">
                         <div class="well" style="background-color:#ebeef4">
+                            @if($sale->image!== '' || $sale->image!== 'noimage.jpeg')
+                            <img style="width:100%" src="/public/images/{{$sale->image}}">
+                            @endif
                             <h3><a href="/sales/{{$sale->id}}">{{$sale->name}}</a></h3>
                             @if($sale->discount==0)
                             <h5>₹{{$sale->price}}</h5>

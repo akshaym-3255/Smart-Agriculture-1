@@ -17,6 +17,9 @@ class CartController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request,['quantity'=>'required']);
+        if($request->quantity<0) {
+            return back()->with('error','Quantity must be greater than 0');
+        }
         $CartItems = CartItem::where('user_id',auth()->id())
                             ->where('id',$request->input('id'))
                             ->get();

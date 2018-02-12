@@ -48,9 +48,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if($data['type']==2 && $data['address']=='') {
+       /* if($data['type']==2 && $data['address']=='') {
             return back()->with('error','Please enter a valid address');
-        }
+        }*/
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -67,6 +67,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /*$id = User::orderBy('id','desc')->first();
+        $id++;
+        $profile = new App\Profile;
+        $profile->id = $id;
+        $profile->address = $data['address'];
+        $profile->sales = 0;
+        $profile->save();*/
+        if($data['type']==2) {
+            app('App\Http\Controllers\ProfileController')->store(['address'=>$data['address']]);
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

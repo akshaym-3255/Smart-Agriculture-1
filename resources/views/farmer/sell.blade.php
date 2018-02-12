@@ -25,6 +25,7 @@
         {{Form::label('information','Additional Information(optional)')}}
         {{Form::textarea('information','',['class'=>'form-control','placeholder'=>'Any additional information you can give'])}}
     </div>
+    {{Form::file('image')}}
     {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
 </div>

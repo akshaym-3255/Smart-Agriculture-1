@@ -1,5 +1,5 @@
 @extends('layouts.index')
-<!--TODO: resolve illegal string offset 'name' error-->
+
 @section('content')
 <div class="container">
     <a href="/sales">Go Back</a>
@@ -18,7 +18,12 @@
                     <h3>{{$sale->information}}</h3>
                 </div>
             </div>
-            {{Form::text('quantity','',['class'=>'form-control','placeholder'=>'Type here...'])}}
+            <div class="form-group">
+            <input name="quantity" type="number" class="form-control" style="width:200px">
+            </div>
+            <!--<div class="form-group">
+            {{Form::select('perquan',[0=>'kg',1=>'g'],['class'=>'form-control'])}}
+            </div>-->
             {{Form::submit('Add to Cart',['class'=>'btn btn-primary'])}}
         {!!Form::close()!!}
         </div>
@@ -44,7 +49,6 @@
                 {{Form::hidden('id',$sale->id)}}
             <div class="form-group">
                 {{Form::text('title','',['class'=>'form-control','placeholder'=>'Title here...'])}}
-            <div class="form-group">
             </div>
             <div class="form-group">
                 {{Form::radio('stars','',['class'=>'star star-5'])}}
@@ -56,4 +60,7 @@
             {!!Form::close()!!}
         </div>
 </div>
+<script>
+
+</script>
 @endsection

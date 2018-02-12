@@ -17,7 +17,7 @@ class SalesController extends Controller
     public function index()
     {
         $sales = Sale::all();
-        return view('consumers.index')->with('sales',$sales);
+        return view('consumers.index')->with('sales',$sales)->with('count',0);
     }
 
     /**
@@ -38,7 +38,18 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request,['name'=>'required','price'=>'required']);
+        if($request->hasFile('image')) {
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/images',$fileNameToStore);
+        }
+        else {
+            $fileNameToStore = 'noimage.jpeg';
+        }
         $sale = new Sale;
         $sale->name = $request->input('name');
         $sale->information = $request->input('information');
@@ -48,6 +59,7 @@ class SalesController extends Controller
         $sale->perquan = $request->input('perquan');
         $sale->perprice = $request->input('perprice');
         $sale->user_id = auth()->id();
+        $sale->image = $fileNameToStore;
         $sale->save();
         return view('/profile/{{auth()->id()}}')->with('success','Item(s) posted successfully');
     }
