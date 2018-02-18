@@ -61,7 +61,7 @@ class SalesController extends Controller
         $sale->user_id = auth()->id();
         $sale->image = $fileNameToStore;
         $sale->save();
-        return view('/profile/{{auth()->id()}}')->with('success','Item(s) posted successfully');
+        return view('/sales')->with('success','Item(s) posted successfully');
     }
 
     /**

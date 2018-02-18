@@ -14,7 +14,11 @@
         @foreach($cartitems as $cartitem)
         <tr>
         <td>{{$cartitem->sale->name}}</td>
+        @if($cartitem->sale->discount == 0)
         <td>{{$cartitem->sale->price}}</td>
+        @else
+        <td>{{$cartitem->sale->price-($cartitem->sale->price*$cartitem->sale->discount/100)}}</td>
+        @endif
         <td>{{$cartitem->quantity}}</td>
         <td>
         {!!Form::open(['action' => ['CartController@destroy', $cartitem->sale->id], 'method' => 'POST', 'class' => 'pull-right'])!!}

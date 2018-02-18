@@ -48,7 +48,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-       /* if($data['type']==2 && $data['address']=='') {
+        /* if($data['type']==2 && $data['address']=='') {
             return back()->with('error','Please enter a valid address');
         }*/
         return Validator::make($data, [

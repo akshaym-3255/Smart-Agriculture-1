@@ -21,9 +21,6 @@
             <div class="form-group">
             <input name="quantity" type="number" class="form-control" style="width:200px">
             </div>
-            <!--<div class="form-group">
-            {{Form::select('perquan',[0=>'kg',1=>'g'],['class'=>'form-control'])}}
-            </div>-->
             {{Form::submit('Add to Cart',['class'=>'btn btn-primary'])}}
         {!!Form::close()!!}
         </div>
@@ -59,6 +56,7 @@
             {{Form::submit('Post Review',['class'=>'btn btn-default'])}}
             {!!Form::close()!!}
         </div>
+        <br/>
 </div>
 <script>
 

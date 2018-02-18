@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageToSaels extends Migration
+class AddIsAdminToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddImageToSaels extends Migration
      */
     public function up()
     {
-        Schema::table('sales',function($table) {   
-            $table->string('image');
+        Schema::table('users',function($table) {   
+            $table->boolean('is_admin')->default(0);
         });
     }
 
@@ -25,9 +25,8 @@ class AddImageToSaels extends Migration
      */
     public function down()
     {
-        Schema::table('sales',function($table) {   
-            $table->dropColumn('image');
+        Schema::table('users',function($table) {   
+            $table->dropColumn('is_admin');
         });
-        //
     }
 }

@@ -60,7 +60,12 @@ class CartController extends Controller
         $total = 0;
         $CartItems = Cart::where('user_id',$user_id)->get();
         foreach($CartItems as $CartItem) {
-            $itemtotal = ($CartItem->price)*($CartItem->quantity);
+            if($CartItem->sale->discount == 0) {
+                $itemtotal = ($CartItem->sale->price)*($CartItem->sale->quantity);
+            }
+            else {
+                $itemtotal = $CartItem->sale->price-($CartItem->sale->price*$CartItem->sale->discount/100);
+            }
             $total+=$itemtotal;
         }
         return view('consumer.checkout')->with('total',$total);
@@ -77,12 +82,18 @@ class CartController extends Controller
         $total = 0;
         $totalitems = 0;
         $user_id = auth()->user()->id;
-        $cartitems = CartItem::where('user_id', $user_id)->get();
-        foreach($cartitems as $cartitem) {
-            $total+=($cartitem->sale->price)*($cartitem->quantity);
+        $CartItems = CartItem::where('user_id', $user_id)->get();
+        foreach($CartItems as $CartItem) {
+            if($CartItem->sale->discount == 0) {
+                $itemtotal = ($CartItem->sale->price)*($CartItem->quantity);
+            }
+            else {
+                $itemtotal = ($CartItem->sale->price-($CartItem->sale->price*$CartItem->sale->discount/100))*($CartItem->quantity);
+            }
+            $total+=$itemtotal;
             $totalitems++;
         }
-        return view('consumers.checkout')->with('cartitems',$cartitems)
+        return view('consumers.checkout')->with('cartitems',$CartItems)
                                          ->with('total',$total)
                                          ->with('totalitems',$totalitems);
     }
