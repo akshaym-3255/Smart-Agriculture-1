@@ -31,6 +31,7 @@
             <h5>{{$review->user->name}}</h5>
             <p>Written on: {{$review->created_at}}</p>
             @if($review->stars!==0)
+            <span class="fa fa-star"></span>
             <p>{{$review->stars}} Stars</p>
             @endif
             <p>{{$review->body}}</p>
@@ -42,13 +43,14 @@
         </div>
         <div class="container">
             <h4>Submit Review</h4>
+            <span class="fa fa-star"></span>
             {!!Form::open(['action'=>'ReviewController@store','method'=>'POST','enctype'=>'multipart/form-data'])!!}
                 {{Form::hidden('id',$sale->id)}}
             <div class="form-group">
                 {{Form::text('title','',['class'=>'form-control','placeholder'=>'Title here...'])}}
             </div>
             <div class="form-group">
-                {{Form::radio('stars','',['class'=>'star star-5'])}}
+                {{Form::radio('stars','',['class'=>'fa fa-star'])}}
             </div>
             <div class="form-group">
                 {{Form::textarea('body','',['class'=>'form-control','placeholder'=>'Type your review here...'])}}

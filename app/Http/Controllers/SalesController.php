@@ -61,7 +61,10 @@ class SalesController extends Controller
         $sale->user_id = auth()->id();
         $sale->image = $fileNameToStore;
         $sale->save();
-        return view('/sales')->with('success','Item(s) posted successfully');
+        $user = User::find(auth()->id());
+        return view('farmer.profile')->with('success','Item(s) posted successfully')
+                                    ->with('user',$user)
+                                    ->with('sales',$user->sales);
     }
 
     /**

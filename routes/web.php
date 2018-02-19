@@ -29,9 +29,17 @@ Route::get('/consumer',function() {
 
 Auth::routes();
 
+Route::get('/test',function() {
+    return view('test');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sell',function() {
+    $user = User::find(auth()->id());
+    if($user->type==1) {
+        return redirect('/home')->with('error','Unauthorized. You are not a producer.');
+    }
     return view('farmer.sell');
 });
 
@@ -43,8 +51,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function() {
     Route::get('profile','AdminController@index');
     Route::get('users','AdminController@users');
     Route::get('users/deluser/{id}','AdminController@deluser');
+    Route::get('users/adduser',function() {
+        return view('admin.add_user');
+    });
+    Route::get('users/adduser/add','AdminController@adduser');
     Route::get('sales','AdminController@sales');
+    Route::get('sales/delsale/{id}','AdminController@delsale');
     Route::get('reviews','AdminController@reviews');
+    Route::get('reviews/delreview/{id}','AdminController@delreview');
 });
   
 Route::resource('sales','SalesController');

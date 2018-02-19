@@ -4,31 +4,27 @@
         <li class="nav-item">
           <a class="nav-link active" href="profile">
             <span data-feather="home"></span>
-            Dashboard <span class="sr-only">(current)</span>
+            Dashboard
           </a>
         </li>
         <li class="nav-item">Manage database</li>
         <li class="nav-item">
           <a class="nav-link" href="users">
-            <span data-feather="file"></span>
             Users
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="shopping-cart"></span>
+          <a class="nav-link" href="sales">
             Products
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <span data-feather="users"></span>
             Reviews
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <span data-feather="bar-chart-2"></span>
             Reports
           </a>
         </li>

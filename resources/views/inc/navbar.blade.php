@@ -42,6 +42,11 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
+                @if(Auth::user()->is_admin)
+                    <li>
+                        <a href="/admin/profile">Admin Panel</a>
+                    </li>
+                    @endif
                     <li>
                         <a href="/checkout">Cart</a> <!--TODO: add number of items in cart-->
                     </li>
