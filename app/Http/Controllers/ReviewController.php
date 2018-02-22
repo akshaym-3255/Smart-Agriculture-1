@@ -16,8 +16,8 @@ class ReviewController extends Controller
         $review->title = $request->input('title');
         $review->body = $request->input('body');
         $review->id = $request->input('id');
+        //$review->stars = $request->input('stars');
         $review->user_id = auth()->id();
-        $review->stars = $request->input('stars');
         $review->save();
         return back()->with('success','Your review has been sent for moderation. It will be posted if deemed suitable. Thank you!');
     }
