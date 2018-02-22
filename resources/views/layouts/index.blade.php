@@ -23,7 +23,7 @@
                 color: white;
             }            
             body {
-                background-image: url('terrace.jpg');
+                background-image: url('india.jpg');
                 background-size: cover;
             }
         </style>

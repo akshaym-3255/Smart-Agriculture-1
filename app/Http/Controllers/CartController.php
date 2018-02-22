@@ -28,14 +28,14 @@ class CartController extends Controller
                     $CartItem->quantity+=$request->input('quantity');
                     $CartItem->save();
             }
-            return back()->with('success','x'); //TODO: change message
+            return back()->with('success','Items added to cart.'); //TODO: change message
         }
         $CartItem = new CartItem;
         $CartItem->id = $request->input('id');
         $CartItem->user_id = auth()->id();
         $CartItem->quantity = $request->input('quantity');
         $CartItem->save();
-        return back()->with('success','y');//TODO: change message
+        return back()->with('success','Items addded to cart.');//TODO: change message
     }
     //to update the cart contents, ie, add to or delete from the quantity of a cartitem
     /* public function update($id,$add) {
