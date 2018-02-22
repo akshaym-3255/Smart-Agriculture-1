@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" style="background-color:pink">
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" style="background-color:#03bb85">
     <div class="container">
         <div class="navbar-header">
 
@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/') }}" id="white-linkz">
                 Smart-Agri
             </a>
         </div>
@@ -19,9 +19,9 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             @if(Auth::check())
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" id="nav-linkz">
                 @if(Auth::user()->type == 1)
-                <li><a href="/sales">Buy Goods</a></li>
+                <li><a href="/sales" id="white-linkz">Buy Goods</a></li>
                 <form action="/search" method="POST" role="search" class="navbar-form navbar-left">
                     {{csrf_field()}}
                 <div class="form-group">
@@ -30,7 +30,7 @@
                 <button type="submit" class="btn btn-default">Search</button>
                 </form>
                 @elseif(Auth::user()->type == 2)
-                <li><a href="/sell">Sell Goods</a></li>
+                <li><a href="/sell" id="white-linkz">Sell Goods</a></li>
                 @endif
             </ul>
             @endif
@@ -39,19 +39,19 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <li><a href="{{ route('login') }}" id="white-linkz">Login</a></li>
+                    <li><a href="{{ route('register') }}" id="white-linkz">Register</a></li>
                 @else
                 @if(Auth::user()->is_admin)
                     <li>
-                        <a href="/admin/profile">Admin Panel</a>
+                        <a href="/admin/profile" id="white-linkz">Admin Panel</a>
                     </li>
                     @endif
                     <li>
-                        <a href="/checkout">Cart</a> <!--TODO: add number of items in cart-->
+                        <a href="/checkout" id="white-linkz">Cart</a> <!--TODO: add number of items in cart-->
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="white-linkz">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

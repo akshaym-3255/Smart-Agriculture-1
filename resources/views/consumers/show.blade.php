@@ -50,9 +50,6 @@
                 {{Form::text('title','',['class'=>'form-control','placeholder'=>'Title here...'])}}
             </div>
             <div class="form-group">
-                {{Form::radio('stars','',['class'=>'fa fa-star'])}}
-            </div>
-            <div class="form-group">
                 {{Form::textarea('body','',['class'=>'form-control','placeholder'=>'Type your review here...'])}}
             </div>
             {{Form::submit('Post Review',['class'=>'btn btn-default'])}}

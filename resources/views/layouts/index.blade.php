@@ -18,10 +18,14 @@
             /*.btn-default{
                 width:200px;
                 height:200px;
-            }
-            body {
-                background-image: url('/terrace.jpg');
             }*/
+            #white-linkz {
+                color: white;
+            }            
+            body {
+                background-image: url('terrace.jpg');
+                background-size: cover;
+            }
         </style>
     </head>
     <body>
