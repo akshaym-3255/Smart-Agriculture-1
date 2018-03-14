@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Sale;
 use App\Review;
 use App\User;
+use App\AdminRequest;
 class SalesController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $sales = Sale::all();
+        $sales = Sale::where('verified','=',1)->get();
         return view('consumers.index')->with('sales',$sales)->with('count',0);
     }
 
@@ -51,6 +52,7 @@ class SalesController extends Controller
             $fileNameToStore = 'noimage.jpeg';
         }
         $sale = new Sale;
+        $adminrequest = new AdminRequest;
         $sale->name = $request->input('name');
         $sale->information = $request->input('information');
         $sale->price = $request->input('price');
@@ -61,6 +63,9 @@ class SalesController extends Controller
         $sale->user_id = auth()->id();
         $sale->image = $fileNameToStore;
         $sale->save();
+        $adminrequest->id = $sale->id;
+        $adminrequest->request_type = 1;
+        $adminrequest->save();
         $user = User::find(auth()->id());
         return view('farmer.profile')->with('success','Item(s) posted successfully')
                                     ->with('user',$user)

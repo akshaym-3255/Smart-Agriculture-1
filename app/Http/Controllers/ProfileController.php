@@ -9,7 +9,13 @@ use App\User;
 class ProfileController extends Controller
 {
     public function store($data) {
-        $id = User::orderBy('id','desc')->first()->id;
+        $users = User::all();
+        if (!$users->isEmpty()) {
+            $id = User::orderBy('id','desc')->first()->id;
+        }
+        else {
+            $id = -1;
+        }
         $id++;
         $profile = new Profile;
         $profile->id = $id;

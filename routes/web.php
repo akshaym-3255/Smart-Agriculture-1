@@ -59,6 +59,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function() {
     Route::get('sales/delsale/{id}','AdminController@delsale');
     Route::get('reviews','AdminController@reviews');
     Route::get('reviews/delreview/{id}','AdminController@delreview');
+    Route::get('requests','AdminController@requests');
 });
   
 Route::resource('sales','SalesController');

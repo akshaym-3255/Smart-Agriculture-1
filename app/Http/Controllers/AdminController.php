@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Sale;
+use App\AdminRequest;
 class AdminController extends Controller
 {
     /**
@@ -31,6 +32,11 @@ class AdminController extends Controller
     public function sales() {
         $sales = Sale::all();
         return view('admin.sales')->with('sales',$sales);
+    }
+
+    public function requests() {
+        $adminrequests = AdminRequest::all();
+        return view('admin.requests')->with('adminrequests',$adminrequests);
     }
 
     public function adduser(Request $request) {
