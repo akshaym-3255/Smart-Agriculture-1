@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Sale;
 use App\Review;
@@ -71,7 +70,7 @@ class SalesController extends Controller
                                     ->with('user',$user)
                                     ->with('sales',$user->sales);
     }
-
+ 
     /**
      * Display the specified resource.
      *

@@ -60,6 +60,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function() {
     Route::get('reviews','AdminController@reviews');
     Route::get('reviews/delreview/{id}','AdminController@delreview');
     Route::get('requests','AdminController@requests');
+    Route::get('requests/validate/1/{id}','AdminController@validate_sale');
 });
   
 Route::resource('sales','SalesController');

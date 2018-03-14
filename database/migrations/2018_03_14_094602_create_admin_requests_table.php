@@ -14,9 +14,9 @@ class CreateAdminRequestsTable extends Migration
     public function up()
     {
         Schema::create('admin_requests', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('request_id');
+            $table->integer('id');
             $table->integer('request_type');
-            //$table->integer();
             $table->timestamps();
         });
     }

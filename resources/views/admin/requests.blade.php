@@ -10,8 +10,9 @@
 
                     <div class="panel-body">
                         @foreach($adminrequests as $adminrequest)
-                            <div class="row">
-                                {{$adminrequest->get_request_type($adminrequest->request_type)}}
+                            <div class="container">
+                                {{$adminrequest->get_request_type($adminrequest->request_type)}}<br/>
+                            <a class="btn btn-primary" href="requests/validate/{{$adminrequest->request_type}}/{{$adminrequest->request_id}}">Validate</a>
                             </div>
                         @endforeach
                     </div>

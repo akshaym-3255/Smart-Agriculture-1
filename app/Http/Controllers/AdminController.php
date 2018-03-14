@@ -53,6 +53,32 @@ class AdminController extends Controller
         return view('admin.profile')->with('success','x');
     }
 
+    public function validate_sale($id) {
+        $adminrequest = AdminRequest::where('request_id','=',$id)->get();
+        if (!is_null($adminrequest))
+            $sale = Sale::find($adminrequest[0]->id);
+        if (!is_null($sale)) {
+            $sale->verified = 1;
+            $sale->save();
+            $adminrequest[0]->delete();
+            return back()->with('success','Sale Validated');
+        }
+        return back()->with('error','FAILURE');
+    }
+
+    public function validate_review($id) {
+        $review = Review::find($id);
+        if (!is_null($review)) {
+            $review->verified = 1;
+            $review->save();
+            $adminrequest = AdminRequest::find($id);
+            $adminrequest->delete();
+            return back()->with('success','Sale Validated');
+        }
+        return back()->with('error','FAILURE');
+        
+    }
+
     public function deluser($id) {
         $user = User::find($id);
         if(auth()->id() == $id) {
