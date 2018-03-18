@@ -80,7 +80,9 @@ class SalesController extends Controller
     public function show($id)
     {
         $sale = Sale::find($id);
-        $reviews = Review::where('id','=',$id)->get();
+        $reviews = Review::where('id','=',$id)
+                        ->where('verified','=',1)
+                        ->get();
         return view('consumers.show')->with('sale',$sale)
                                     ->with('reviews',$reviews);
     }

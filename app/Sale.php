@@ -28,4 +28,7 @@ class Sale extends Model
     public function cartitem() {
         return $this->hasMany('App\CartItem','id','id');
     }
+    /*public function adminrequest() {
+        return $this->hasOne('App\AdminRequest','id','id');
+    }*/
 }

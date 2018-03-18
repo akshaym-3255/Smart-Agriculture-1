@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuantitiesTable extends Migration
+class AddVerifiedToReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateQuantitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('qties', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('reviews',function($table) {
+            $table->boolean('verified')->default(0);
         });
     }
 
@@ -27,6 +25,8 @@ class CreateQuantitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qties');
+        Schema::table('reviews',function() {
+            $table->dropColumn('verified');
+        });
     }
 }

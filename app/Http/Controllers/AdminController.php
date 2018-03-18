@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Sale;
+use App\Review;
 use App\AdminRequest;
 class AdminController extends Controller
 {
@@ -21,7 +22,8 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('admin.profile');
+        $adminrequests = AdminRequest::all();
+        return view('admin.requests')->with('adminrequests',$adminrequests);
     }
 
     public function users() {
@@ -32,11 +34,6 @@ class AdminController extends Controller
     public function sales() {
         $sales = Sale::all();
         return view('admin.sales')->with('sales',$sales);
-    }
-
-    public function requests() {
-        $adminrequests = AdminRequest::all();
-        return view('admin.requests')->with('adminrequests',$adminrequests);
     }
 
     public function adduser(Request $request) {
@@ -67,16 +64,16 @@ class AdminController extends Controller
     }
 
     public function validate_review($id) {
-        $review = Review::find($id);
-        if (!is_null($review)) {
+        $adminrequest = AdminRequest::where('request_id','=',$id)->get();
+        if (!is_null($adminrequest))
+            $review = Review::find($adminrequest[0]->id);
+        if (!is_null($sale)) {
             $review->verified = 1;
             $review->save();
-            $adminrequest = AdminRequest::find($id);
-            $adminrequest->delete();
+            $adminrequest[0]->delete();
             return back()->with('success','Sale Validated');
         }
         return back()->with('error','FAILURE');
-        
     }
 
     public function deluser($id) {

@@ -44,7 +44,7 @@
                 @else
                 @if(Auth::user()->is_admin)
                     <li>
-                        <a href="/admin/profile" id="white-linkz">Admin Panel</a>
+                        <a href="/admin/requests" id="white-linkz">Admin Panel</a>
                     </li>
                     @endif
                     <li>

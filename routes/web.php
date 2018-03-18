@@ -48,7 +48,6 @@ Route::get('/sell',function() {
     Route::get('')
 });*/
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function() {
-    Route::get('profile','AdminController@index');
     Route::get('users','AdminController@users');
     Route::get('users/deluser/{id}','AdminController@deluser');
     Route::get('users/adduser',function() {
@@ -59,8 +58,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function() {
     Route::get('sales/delsale/{id}','AdminController@delsale');
     Route::get('reviews','AdminController@reviews');
     Route::get('reviews/delreview/{id}','AdminController@delreview');
-    Route::get('requests','AdminController@requests');
+    Route::get('requests','AdminController@index');
     Route::get('requests/validate/1/{id}','AdminController@validate_sale');
+    Route::get('requests/validate/2/{id}','AdminController@validate_review');
 });
   
 Route::resource('sales','SalesController');
@@ -75,8 +75,10 @@ Route::get('delitemfromcart','CartController@destory');
 
 Route::any('/search',function() {
     $q = Input::get('q');
+    $count = 0;
     $sales = Sale::where('name','LIKE','%'.$q.'%')->get();
-    return view('consumers.index')->with('sales',$sales);
+    return view('consumers.index')->with('sales',$sales)
+                                  ->with('count',$count);
 });
 
 Route::get('/edit/{id}','SalesController@edit');
