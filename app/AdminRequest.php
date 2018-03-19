@@ -19,11 +19,9 @@ class AdminRequest extends Model
         $types = DB::select("select * from request_type where id = ?",[$type]);
         return $types[0]->request;
     }
-    public function sale() {
-        return $this->belongsTo('App\Sale','id','id');
-    }
-    public function review() {
-        return $this->belongsTo('App\Review','id','id');
+    public function sale($id) {
+        $sale = Sale::find($id);
+        return $sale;
     }
     /*public function get_sale($sale_id) {
         $sale = Sale::find($sale_id);
